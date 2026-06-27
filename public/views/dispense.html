@@ -1,0 +1,231 @@
+<div class="dsc-dispense-app">
+
+<main class="psc-app">
+
+  <section class="psc-page">
+
+    <!-- CARD -->
+    <div class="psc-card psc-stock-card">
+
+      <!-- HEADER -->
+      <div class="psc-stock-header">
+
+        <div class="psc-stock-title">
+          <h1>จำหน่ายยาออก (Dispense Stock)</h1>
+          <p>ระบบบันทึกการจ่ายยา และ ตัดสต๊อก</p>
+        </div>
+
+        <div class="dsc-dispense-action-bar">
+
+          <button
+          class="btn btn-refresh"
+          onclick="openDispenseModal()">
+
+          💊 บันทึกการจำหน่าย
+
+          </button>
+
+          <button class="btn btn-refresh"
+                  onclick="openDispenseUploadModal()">
+            ⬆️ อัพโหลด Excel
+          </button>
+
+        </div>
+
+      </div>
+
+            <!-- TABLE WRAPPER -->
+      <div class="psc-table-wrap">
+
+        <table class="psc-table">
+
+            <thead>
+              <tr>
+                <th>วันที่</th>
+                <th>รหัส</th>
+                <th>ชื่อยา</th>
+                <th>จำนวน</th>
+                <th>หน่วย</th>
+                <th>Lot</th>
+                <th>EXP</th>
+                <th>การจัดการ</th>
+              </tr>
+            </thead>
+
+            <tbody id="dispenseTable"></tbody>
+
+          </table>
+
+        </div>     
+
+      </div>
+
+
+  </section>
+
+</main>
+
+
+</div>
+
+<!-- DISPENSE MODAL -->
+<div id="dispenseModal" class="psc-modal">
+
+  <div class="psc-modal-box">
+
+    <!-- HEADER -->
+    <div class="psc-modal-header">
+      <div>
+        <h2>จำหน่ายยาออกจากระบบ</h2>
+        <p>บันทึกการจ่ายยาและจำหน่ายยา</p>
+      </div>
+
+      <button type="button"
+              class="psc-modal-close"
+              onclick="closeDispenseModal()">
+        ✕
+      </button>
+    </div>
+
+    <!-- FORM -->
+    <form id="dispenseForm">
+
+      <div class="psc-modal-body">
+
+        <div class="psc-grid">
+
+          <!-- TYPE (hidden) -->
+          <input type="hidden" name="type" value="OUT" />
+
+          <!-- REF -->
+          <div class="psc-field">
+            <label>เลขที่จำหน่าย</label>
+            <input name="refNo" id="refNo" readonly />
+          </div>
+
+          <!-- DATE -->
+          <div class="psc-field">
+            <label>วันที่</label>
+            <input type="date" name="date" id="dateIn" required />
+          </div>
+
+          <!-- DRUG CODE -->
+          <div class="psc-field">
+            <label>รหัสยา</label>
+            <select id="drugSelect" name="code">
+              <option value="">-- เลือกยา --</option>
+            </select>
+          </div>
+
+          <!-- NAME -->
+          <div class="psc-field">
+            <label>ชื่อยา</label>
+            <input name="name" id="name" readonly />
+          </div>
+
+          <!-- QTY -->
+          <div class="psc-field">
+            <label>จำนวน</label>
+            <input type="number" name="qty" id="qty" required/>
+          </div>
+
+          <div class="psc-field">
+            <label>หน่วย</label>
+            <input name="unit" id="unit" readonly/>
+          </div>
+
+          <div class="psc-field">
+            <label>Lot</label>
+            <input name="lot" id="lot" required/>
+          </div>
+
+          <div class="psc-field">
+            <label>วันหมดอายุ</label>
+            <input type="date" name="exp"  id="exp" required/>
+          </div>
+          
+
+          <div class="psc-field">
+            <label>ส่งออกไปยัง (Dispense To)</label>
+            <input name="supplier" id="supplier" required/>
+          </div>
+
+          <div class="psc-field">
+            <label>ผู้ใช้งาน(USER)</label>
+            <input name="user" id="user" placeholder="ชื่อผู้บันทึก" required/>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- FOOTER -->
+      <div class="psc-modal-footer">
+
+        <button type="button"
+                class="psc-btn psc-btn-light"
+                onclick="closeDispenseModal()">
+          ยกเลิก
+        </button>
+
+        <button type="submit"
+                class="psc-btn psc-btn-primary">
+          บันทึกข้อมูล
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+<!-- DISPENSE UPLOAD MODAL -->
+<div id="dispenseUploadModal" class="modal hidden">
+  
+  <div class="modal-content">
+
+    <!-- HEADER -->
+    <div class="modal-header">
+      <h3>⬆️ อัปโหลด Excel / ZIP</h3>
+      <button class="btn-close" onclick="closeDispenseUploadModal()">✖</button>
+    </div>
+
+    <!-- BODY -->
+    <div class="modal-body">
+
+      <label>เลือกไฟล์ (Excel / ZIP)</label>
+      <input 
+        type="file" 
+        id="dispenseZipFile" 
+        accept=".xlsx,.xls,.zip"
+      />
+
+      <p style="margin-top:10px;color:#888;font-size:12px;">
+        * รองรับไฟล์ Excel หรือ ZIP ที่มีข้อมูลการ dispense
+      </p>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="modal-footer">
+
+      <button 
+        class="btn btn-secondary"
+        onclick="closeDispenseUploadModal()"
+      >
+        ยกเลิก
+      </button>
+
+      <button
+  type="button"
+  class="btn btn-primary"
+  onclick="uploadDispenseFile()"
+>
+    ⬆️ อัปโหลด
+  </button>
+
+    </div>
+
+  </div>
+</div>

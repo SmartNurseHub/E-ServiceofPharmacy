@@ -1,0 +1,218 @@
+<div class="ems-check-app">
+
+    <div class="card stock-card">
+
+    <!-- ======================================
+         HEADER
+    ======================================= -->
+    <div class="card-header stock-header">
+
+      <div class="stock-header-left">
+
+        <div class="stock-icon">
+          🚑
+        </div>
+
+        <div>
+          <h1>Emergency Checklist</h1>
+          <p>ระบบตรวจสอบอุปกรณ์ฉุกเฉิน เวชภัณฑ์ และวันหมดอายุ</p>
+        </div>
+
+      </div>
+
+      <div class="stock-header-right">
+
+        <button
+        id="scanQrBtn"
+        class="ems-check-btn ems-check-btn-outline"
+      >
+        <i class="fa-solid fa-qrcode"></i>
+        Scan QR
+      </button>
+
+      <button
+        id="saveChecklistBtn"
+        class="ems-check-btn ems-check-btn-outline"
+      >
+        <i class="fa-solid fa-check"></i>
+        บันทึก
+      </button>
+
+      </div>
+
+    </div>
+  <!-- ================= MENU ================= -->
+  <section class="ems-check-menu">
+
+    <button class="ems-check-menu-btn" data-page="inventory">
+      <i class="fa-solid fa-layer-group"></i>
+      Inventory Master
+    </button>
+
+    <button class="ems-check-menu-btn" data-page="receive">
+      <i class="fa-solid fa-arrows-down-to-line"></i>
+      Inventory Stock 
+    </button>
+
+    <button class="ems-check-menu-btn" data-page="stockout">
+      <i class="fa-solid fa-arrows-up-to-line"></i>
+      Inventory Dispense
+    </button>
+
+    <button class="ems-check-menu-btn" data-page="dailycheck">
+      <i class="fa-solid fa-clipboard-check"></i>
+      Daily Check
+    </button>
+
+    <button class="ems-check-menu-btn" data-page="report">
+      <i class="fa-solid fa-chart-column"></i>
+      Report
+    </button>
+
+  </section>
+
+  <!-- ================= SUMMARY ================= -->
+  <section class="ems-check-summary">
+
+    <div class="ems-check-card">
+      <div class="ems-check-icon blue">
+        <i class="fa-solid fa-boxes-stacked"></i>
+      </div>
+      <div>
+        <h2 id="totalItems">124</h2>
+        <p>ทั้งหมด</p>
+      </div>
+    </div>
+
+    <div class="ems-check-card">
+      <div class="ems-check-icon green">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <div>
+        <h2 id="readyItems">118</h2>
+        <p>พร้อมใช้งาน</p>
+      </div>
+    </div>
+
+    <div class="ems-check-card">
+      <div class="ems-check-icon orange">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </div>
+      <div>
+        <h2 id="missingItems">4</h2>
+        <p>ไม่ครบ</p>
+      </div>
+    </div>
+
+    <div class="ems-check-card">
+      <div class="ems-check-icon red">
+        <i class="fa-solid fa-clock"></i>
+      </div>
+      <div>
+        <h2 id="expireItems">2</h2>
+        <p>ใกล้หมดอายุ</p>
+      </div>
+    </div>
+
+  </section>
+  <!-- ================= DAILY CHECK ================= -->
+
+<section class="ems-check-daily">
+
+  <div class="ems-daily-card">
+
+    <div class="ems-daily-header">
+
+      <div class="ems-daily-title">
+
+        <div class="ems-daily-icon">
+          📅
+        </div>
+
+        <div>
+
+          <h2>Daily Emergency Check</h2>
+
+          <span>
+            ตารางตรวจสอบอุปกรณ์ Emergency ประจำวัน
+          </span>
+
+        </div>
+
+      </div>
+
+      <div class="ems-daily-filter">
+
+        <label>เดือน</label>
+
+        <select id="monthSelect"></select>
+
+        <label>ปี</label>
+
+        <select id="yearSelect"></select>
+
+      </div>
+
+    </div>
+
+    <div class="ems-daily-table-wrapper">
+
+      <table id="dailyTable">
+
+        <thead>
+
+          <tr>
+
+            <th>CODE</th>
+            <th>NAME</th>
+            <th>UNIT</th>
+            <th>REQ</th>
+
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+            <th>7</th>
+            <th>8</th>
+            <th>9</th>
+            <th>10</th>
+            <th>11</th>
+            <th>12</th>
+            <th>13</th>
+            <th>14</th>
+            <th>15</th>
+            <th>16</th>
+            <th>17</th>
+            <th>18</th>
+            <th>19</th>
+            <th>20</th>
+            <th>21</th>
+            <th>22</th>
+            <th>23</th>
+            <th>24</th>
+            <th>25</th>
+            <th>26</th>
+            <th>27</th>
+            <th>28</th>
+            <th>29</th>
+            <th>30</th>
+            <th>31</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody id="tbody"></tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</section>
+
+</div>
+

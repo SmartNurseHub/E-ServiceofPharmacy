@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sticker Print</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#f4f6f9;
+  padding:20px;
+}
+
+.container{ max-width:1200px; margin:auto; }
+
+.card{
+  background:#fff;
+  border-radius:12px;
+  padding:20px;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+h1{ margin-bottom:20px; font-size:24px; }
+
+.toolbar{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:15px;
+}
+
+button{
+  padding:12px 18px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+#printBtn{ background:#16a34a; color:#fff; }
+
+/* SEARCH */
+.searchbar{
+  display:flex;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.searchbar input{
+  flex:1;
+  padding:10px;
+  border:1px solid #ccc;
+  border-radius:8px;
+}
+
+/* TABLE */
+.table-wrap{
+  width:100%;
+  overflow:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:700px;
+}
+
+th, td{
+  border:1px solid #e2e8f0;
+  padding:10px;
+  font-size:14px;
+}
+
+th{ background:#f1f5f9; }
+
+/* PRINT */
+#printArea{
+  margin:0;
+  padding:0;
+  display:block;
+}
+
+.sheet{
+  width:88mm;
+  height:58mm;
+
+  box-sizing:border-box;   /* สำคัญที่สุด */
+  display:flex;
+  flex-direction:column;
+
+  border:0.5px solid #000; /* ลดแรงดันขนาด */
+  overflow:hidden;
+
+  break-after:page;        /* ใหม่แทน page-break */
+  page-break-after:always; /* fallback */
+
+  background:#fff;
+  margin:0;
+}
+
+.label{
+  width:100%;
+  height:29mm;   /* ลดจาก 30 → กัน overflow */
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:1.5mm; /* ลดจาก 2mm */
+  box-sizing:border-box;
+
+  border-bottom:0.5px dashed #000;
+}
+
+.label:last-child{
+  border-bottom:none;
+}
+
+.left{ flex:1; }
+
+.code{ font-size:14px; font-weight:bold; }
+.name{
+  font-size:10px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.lot,.exp{ font-size:10px; }
+
+.right{
+  width:26mm;
+  text-align:center;
+}
+
+.qr{
+  width:22mm;
+  height:22mm;
+}
+
+.user{
+  font-size:6px;
+}
+/* PRINT MODE */
+@media print{
+  body *{ visibility:hidden; }
+  #printArea, #printArea *{ visibility:visible; }
+  #printArea{ position:absolute; left:1mm; top:1mm; }
+  .toolbar,.table-wrap,h1{ display:none!important; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<div class="card">
+
+<h1>พิมพ์สติกเกอร์ยา</h1>
+
+<div class="toolbar">
+  <div></div>
+  <button id="printBtn">พิมพ์</button>
+</div>
+
+<div class="searchbar">
+  <input type="text" id="searchBox" placeholder="ค้นหา CODE / NAME / LOT...">
+</div>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+  <th><input type="checkbox" id="masterCheck"></th>
+  <th>CODE</th>
+  <th>NAME</th>
+  <th>LOT</th>
+  <th>EXP</th>
+</tr>
+</thead>
+<tbody id="drugTable"></tbody>
+</table>
+</div>
+
+<div id="printArea"></div>
+
+</div>
+</div>
+
+<script>
+
+let data = [];
+let filtered = [];
+
+/* ===== ELEMENT ===== */
+function el(){
+  return {
+    drugTable: document.getElementById("drugTable"),
+    searchBox: document.getElementById("searchBox"),
+    masterCheck: document.getElementById("masterCheck"),
+    printBtn: document.getElementById("printBtn"),
+    printArea: document.getElementById("printArea")
+  };
+}
+
+/* ===== LOAD ===== */
+async function loadData(){
+  const res = await fetch("/api/receive-stock?type=IN");
+  const json = await res.json();
+
+  data = Array.isArray(json) ? json :
+         Array.isArray(json.data) ? json.data : [];
+
+  filtered = data;
+  renderTable();
+}
+
+/* ===== SEARCH ===== */
+function bindSearch(){
+  el().searchBox.addEventListener("input",(e)=>{
+    const kw = e.target.value.toLowerCase();
+
+    filtered = data.filter(item =>
+      (item.CODE||"").toLowerCase().includes(kw) ||
+      (item.NAME||"").toLowerCase().includes(kw) ||
+      (item.LOT||"").toLowerCase().includes(kw)
+    );
+
+    renderTable();
+  });
+}
+
+/* ===== TABLE ===== */
+function renderTable(){
+  const { drugTable } = el();
+
+  drugTable.innerHTML = "";
+
+  filtered.forEach((item,i)=>{
+
+    const realIndex = data.indexOf(item);
+
+    const tr = document.createElement("tr");
+
+    tr.innerHTML = `
+      <td><input type="checkbox" class="chk" value="${realIndex}"></td>
+      <td>${item.CODE||"-"}</td>
+      <td>${item.NAME||"-"}</td>
+      <td>${item.LOT||"-"}</td>
+      <td>${item.EXP||"-"}</td>
+    `;
+
+    drugTable.appendChild(tr);
+  });
+}
+
+/* ===== SELECT ALL ===== */
+function bindSelectAll(){
+  const { masterCheck } = el();
+
+  masterCheck.addEventListener("change",(e)=>{
+    document.querySelectorAll(".chk").forEach(c=>{
+      c.checked = e.target.checked;
+    });
+  });
+}
+
+/* ===== PRINT (ใช้ checkbox ตรงๆ) ===== */
+function bindPrint(){
+
+  const { printBtn, printArea } = el();
+
+  printBtn.addEventListener("click",()=>{
+
+    const selected = Array.from(document.querySelectorAll(".chk:checked"))
+      .map(c => data[c.value])
+      .filter(Boolean);
+
+    if(selected.length === 0){
+      alert("กรุณาเลือกรายการก่อนพิมพ์");
+      return;
+    }
+
+    printArea.innerHTML = "";
+
+    for(let i=0;i<selected.length;i+=2){
+
+      const sheet = document.createElement("div");
+      sheet.className = "sheet";
+
+      selected.slice(i,i+2).forEach(item=>{
+
+        const label = document.createElement("div");
+        label.className = "label";
+
+        label.innerHTML = `
+          <div class="left">
+            <div class="code">${item.CODE||"-"}</div>
+            <div class="name">${item.NAME||"-"}</div>
+            <div class="lot">LOT:${item.LOT||"-"}</div>
+            <div class="exp">EXP:${item.EXP||"-"}</div>
+          </div>
+          <div class="right">
+            <img class="qr" src="${item.QRCODE||""}">
+            <div class="user">${item.USER||"-"}</div>
+          </div>
+        `;
+
+        sheet.appendChild(label);
+      });
+
+      printArea.appendChild(sheet);
+    }
+
+    window.print();
+  });
+}
+
+/* ===== INIT ===== */
+document.addEventListener("DOMContentLoaded",()=>{
+  loadData();
+  bindSearch();
+  bindSelectAll();
+  bindPrint();
+});
+
+</script>
+
+</body>
+</html>

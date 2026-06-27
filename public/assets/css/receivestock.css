@@ -1,0 +1,457 @@
+/* =========================================================
+RECEIVE STOCK MODULE (RSM)
+SCOPED CSS ONLY
+========================================================= */
+
+.rsm-page *{
+  box-sizing:border-box;
+}
+
+/* =========================================================
+ROOT
+========================================================= */
+
+.rsm-page{
+  min-height:100vh;
+  padding:24px;
+  background:
+    linear-gradient(to bottom,
+    #f3f7fb,
+    #eef3f8);
+  font-family:"Kanit",sans-serif;
+  color:#1e293b;
+}
+
+.rsm-container{
+  width:90%;
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+}
+
+/* =========================================================
+HEADER
+========================================================= */
+
+.rsm-header-card{
+  background:#ffffff;
+  border-radius:24px;
+  padding:28px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  box-shadow:
+    0 10px 30px rgba(15,23,42,.06);
+  border:1px solid #e2e8f0;
+}
+
+.rsm-header-left h1{
+  margin:10px 0 8px;
+  font-size:32px;
+  font-weight:700;
+  color:#0f172a;
+}
+
+.rsm-header-left p{
+  margin:0;
+  font-size:15px;
+  color:#64748b;
+}
+
+.rsm-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 14px;
+  border-radius:999px;
+  background:#ecfeff;
+  color:#0f766e;
+  font-size:13px;
+  font-weight:600;
+}
+
+/* =========================================================
+BUTTONS
+========================================================= */
+
+.rsm-btn{
+  border:none;
+  outline:none;
+  cursor:pointer;
+  border-radius:14px;
+  padding:12px 18px;
+  font-family:inherit;
+  font-size:14px;
+  font-weight:600;
+  transition:.25s ease;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+}
+
+.rsm-btn-primary{
+  background:
+    linear-gradient(135deg,
+    #0f766e,
+    #14b8a6);
+  color:#fff;
+  box-shadow:
+    0 10px 20px rgba(20,184,166,.22);
+}
+
+.rsm-btn-primary:hover{
+  transform:translateY(-2px);
+}
+
+.rsm-btn-light{
+  background:#f1f5f9;
+  color:#334155;
+}
+
+.rsm-btn-light:hover{
+  background:#e2e8f0;
+}
+
+.rsm-btn-success{
+  background:
+    linear-gradient(135deg,
+    #2563eb,
+    #3b82f6);
+  color:#fff;
+}
+
+.rsm-btn-success:hover{
+  transform:translateY(-2px);
+}
+
+/* =========================================================
+CARD
+========================================================= */
+
+.rsm-card{
+  background:#fff;
+  border-radius:24px;
+  overflow:hidden;
+  border:1px solid #e2e8f0;
+  box-shadow:
+    0 10px 25px rgba(15,23,42,.05);
+}
+
+.rsm-table-toolbar{
+  padding:20px 24px;
+  border-bottom:1px solid #e2e8f0;
+  background:#fafcff;
+}
+
+.rsm-toolbar-title h3{
+  margin:0;
+  font-size:18px;
+  font-weight:700;
+}
+
+.rsm-toolbar-title span{
+  font-size:13px;
+  color:#64748b;
+}
+
+/* =========================================================
+TABLE
+========================================================= */
+
+.rsm-table-wrapper{
+  width:100%;
+  overflow:auto;
+}
+
+.rsm-table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:1100px;
+}
+
+.rsm-table thead th{
+  position:sticky;
+  top:0;
+  z-index:5;
+  background:
+    linear-gradient(135deg,
+    #0f172a,
+    #1e293b);
+  color:#fff;
+  padding:16px;
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:.4px;
+  text-align:left;
+  white-space:nowrap;
+}
+
+.rsm-table tbody td{
+  padding:15px 16px;
+  border-bottom:1px solid #f1f5f9;
+  font-size:14px;
+  white-space:nowrap;
+}
+
+.rsm-table tbody tr{
+  transition:.2s ease;
+}
+
+.rsm-table tbody tr:hover{
+  background:#f8fafc;
+}
+
+/* =========================================================
+MODAL
+========================================================= */
+
+.rsm-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+
+.rsm-modal.active {
+  display: flex;
+}
+
+.rsm-modal-card{
+  width:100%;
+  max-width:1100px;
+  background:#fff;
+  border-radius:28px;
+  overflow:hidden;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.18);
+  animation:rsmModalShow .25s ease;
+}
+
+@keyframes rsmModalShow{
+  from{
+    opacity:0;
+    transform:translateY(10px) scale(.98);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+/* =========================================================
+MODAL HEADER
+========================================================= */
+
+.rsm-modal-header{
+  padding:24px 28px;
+  border-bottom:1px solid #e2e8f0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.rsm-modal-header h2{
+  margin:0 0 6px;
+  font-size:24px;
+  font-weight:700;
+}
+
+.rsm-modal-header p{
+  margin:0;
+  color:#64748b;
+  font-size:14px;
+}
+
+.rsm-modal-close{
+  width:42px;
+  height:42px;
+  border:none;
+  border-radius:12px;
+  background:#f1f5f9;
+  cursor:pointer;
+  transition:.2s ease;
+}
+
+.rsm-modal-close:hover{
+  background:#e2e8f0;
+}
+
+/* =========================================================
+FORM
+========================================================= */
+
+.rsm-form{
+  display:flex;
+  flex-direction:column;
+}
+
+.rsm-form-grid{
+  padding:28px;
+  display:grid;
+  grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.rsm-field{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.rsm-field-lg{
+  grid-column:span 2;
+}
+
+.rsm-field label{
+  font-size:13px;
+  font-weight:600;
+  color:#334155;
+}
+
+.rsm-field input,
+.rsm-field select{
+  width:100%;
+  height:48px;
+  border-radius:14px;
+  border:1px solid #dbe2ea;
+  padding:0 14px;
+  background:#fff;
+  font-size:14px;
+  font-family:inherit;
+  transition:.2s ease;
+}
+
+.rsm-field input:focus,
+.rsm-field select:focus{
+  border-color:#14b8a6;
+  box-shadow:
+    0 0 0 4px rgba(20,184,166,.12);
+  outline:none;
+}
+
+/* =========================================================
+FOOTER
+========================================================= */
+
+.rsm-modal-footer{
+  padding:22px 28px;
+  border-top:1px solid #e2e8f0;
+  display:flex;
+  justify-content:flex-end;
+  gap:12px;
+  background:#fafcff;
+}
+
+/* =========================================================
+RESPONSIVE
+========================================================= */
+
+@media(max-width:768px){
+
+  .rsm-page{
+    padding:14px;
+  }
+
+  .rsm-header-card{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .rsm-header-left h1{
+    font-size:24px;
+  }
+
+  .rsm-form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .rsm-field-lg{
+    grid-column:span 1;
+  }
+
+  .rsm-modal-card{
+    max-height:95vh;
+    overflow:auto;
+  }
+
+}
+
+
+/* =========================================================
+MODAL OPEN / CLOSE
+========================================================= */
+
+/* ซ่อน */
+.rsm-modal{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+
+  background:rgba(15,23,42,.55);
+  backdrop-filter:blur(4px);
+
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+
+  transition:
+    opacity .25s ease,
+    visibility .25s ease;
+}
+
+/* เปิด */
+.rsm-modal.active{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+
+/* animation card */
+.rsm-modal-card{
+  width:100%;
+  max-width:1100px;
+
+  background:#fff;
+  border-radius:28px;
+  overflow:hidden;
+
+  transform:translateY(20px) scale(.96);
+  opacity:0;
+
+  transition:
+    transform .25s ease,
+    opacity .25s ease;
+
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.18);
+}
+
+/* ตอนเปิด */
+.rsm-modal.active .rsm-modal-card{
+  transform:translateY(0) scale(1);
+  opacity:1;
+}
+
+.rsm-btn-success{
+
+  background:#16a34a;
+  color:#fff;
+
+}
+
+.rsm-btn-success:hover{
+
+  background:#15803d;
+
+}

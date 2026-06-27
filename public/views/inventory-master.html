@@ -1,0 +1,128 @@
+<section class="inv-page" id="invPage">
+
+  <main class="psc-app">
+
+  <section class="psc-page">
+
+    <!-- CARD -->
+    <div class="psc-card psc-stock-card">
+
+      <!-- HEADER -->
+      <div class="psc-stock-header">
+
+        <div class="psc-stock-title">
+          <h1>Inventory Master List</h1>
+          <p>จัดการข้อมูลเวชภัณฑ์ ยา และอุปกรณ์ทั้งหมด</p>
+        </div>
+
+        <div class="dsc-dispense-action-bar">
+
+         <button type="button" class="btn btn-refresh">
+        <i class="fa-solid fa-file-import"></i>
+        Import Excel
+      </button>
+
+      <button type="button" class="btn btn-refresh" id="openAddInventoryModal">
+        <i class="fa-solid fa-plus"></i>
+        เพิ่มรายการ
+      </button>
+
+        </div>
+
+      </div>
+
+            <!-- TABLE WRAPPER -->
+      <div class="psc-table-wrap">
+
+        <table class="psc-table">
+
+            <thead>
+              <tr>
+                <th>CODE</th>
+                <th>NAME</th>
+                <th>UNIT</th>
+                <th>REQUIRED</th>
+                <th>จัดการ</th>
+              </tr>
+            </thead>
+
+            <tbody id="inventoryMasterTable"></tbody>
+
+          </table>
+
+        </div>     
+
+      </div>
+
+
+  </section>
+
+</main>
+
+</section>
+
+<!-- =====================================================
+MODAL
+===================================================== -->
+<div class="inv-modal" id="inventoryModal" aria-hidden="true">
+
+  <div class="inv-modal-overlay" id="closeInventoryModal"></div>
+
+  <div class="inv-modal-box">
+
+    <div class="inv-modal-header">
+
+      <div>
+        <h2>เพิ่มรายการ Inventory</h2>
+        <p>บันทึกข้อมูลลง Sheet : INVENTORY_MASTER</p>
+      </div>
+
+      <button type="button" class="inv-modal-close" id="closeInventoryModalBtn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </div>
+
+    <form id="inventoryForm">
+
+      <div class="inv-form-grid">
+
+        <div class="inv-form-group">
+          <label>CODE</label>
+          <input type="text" name="code" placeholder="DRG0001" required>
+        </div>
+
+        <div class="inv-form-group">
+          <label>UNIT</label>
+          <input type="text" name="unit" placeholder="amp / box / pcs" required>
+        </div>
+
+      </div>
+
+      <div class="inv-form-group">
+        <label>NAME</label>
+        <input type="text" name="name" required>
+      </div>
+
+      <div class="inv-form-group">
+        <label>REQUIRED</label>
+        <input type="number" name="required" required>
+      </div>
+
+      <div class="inv-modal-footer">
+
+        <button type="button" class="inv-btn inv-btn-light" id="cancelInventoryModal">
+          ยกเลิก
+        </button>
+
+        <button type="submit" class="inv-btn inv-btn-success">
+          <i class="fa-solid fa-floppy-disk"></i>
+          บันทึก
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+</div>

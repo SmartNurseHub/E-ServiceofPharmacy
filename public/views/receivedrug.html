@@ -1,0 +1,208 @@
+<!-- =========================================
+PHARMACY STOCK CARD PAGE (PSC-ISOLATED)
+========================================= -->
+
+<main class="psc-app">
+
+  <section class="psc-page">
+
+    <!-- CARD -->
+    <div class="psc-card psc-stock-card">
+
+      <!-- HEADER -->
+      <div class="psc-stock-header">
+
+        <div class="psc-stock-title">
+          <h1>รายการรับยาเข้าคลัง (DRUG RECEIVE)</h1>
+          <p>บันทึกข้อมูลยาควบคุมเข้าคลัง</p>
+        </div>
+
+        <button class="btn btn-refresh"
+                onclick="openReceiveModal()">
+          ➕ รับยาเข้าใหม่
+        </button>
+
+      </div>
+
+      <!-- TABLE WRAPPER -->
+      <div class="psc-table-wrap">
+
+        <table class="psc-table">
+
+          <thead>
+            <tr>
+              <th>วันที่</th>
+              <th>รหัส</th>
+              <th>ชื่อยา</th>
+              <th>จำนวน</th>
+              <th>หน่วย</th>
+              <th>Lot</th>
+              <th>EXP</th>
+              <th>รายละเอียด</th>
+            </tr>
+          </thead>
+
+          <tbody id="receiveTable">
+            <!-- JS RENDER -->
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<!-- =========================================
+MODAL
+========================================= -->
+
+<div id="receiveModal" class="psc-modal">
+  <div class="psc-modal-box">
+    <!-- MODAL HEADER -->
+    <div class="psc-modal-header">
+      <div>
+        <h2>รับยาเข้าคลัง</h2>
+        <p>บันทึกข้อมูลการรับเข้า</p>
+      </div>
+      <button class="psc-modal-close"
+              onclick="closeReceiveModal()">
+        ✕
+      </button>
+    </div>
+
+    <!-- FORM -->
+    <form class="psc-form" id="receiveForm">
+
+      <div class="psc-modal-body">
+
+        <div class="psc-grid">
+          <div class="psc-field" hidden>
+            <label>ประเภท (TYPE)</label>
+            <input name="type" value="IN"/>
+          </div>
+
+          <div class="psc-field">
+            <label>เลขที่รับเข้า</label>
+            <input name="receiveNo" id="receiveNo" readonly />
+          </div>
+
+          <div class="psc-field">
+            <label>วันที่รับเข้า</label>
+            <input type="date" name="dateIn" required/>
+          </div>
+
+          <div class="psc-field">
+            <label>รหัสยา</label>
+            <select id="drugSelect"  placeholder="กรุณาเลือก"></select>
+            <input type="hidden" name="code" id="code"/>
+          </div>
+
+          <div class="psc-field">
+            <label>ชื่อยา</label>
+            <input name="name" id="name" readonly/>
+          </div>
+
+          <div class="psc-field">
+            <label>จำนวน</label>
+            <input type="number" name="qty" id="qty" required/>
+          </div>
+
+          <div class="psc-field">
+            <label>หน่วย</label>
+            <input name="unit" id="unit" readonly/>
+          </div>
+
+          <div class="psc-field">
+            <label>Lot</label>
+            <input name="lot" id="lot" required/>
+          </div>
+
+          <div class="psc-field">
+            <label>วันหมดอายุ</label>
+            <input type="date" name="exp"  id="exp" required/>
+          </div>
+          
+
+          <div class="psc-field">
+            <label>ได้รับจาก (Supplier)</label>
+            <input name="supplier" required/>
+          </div>
+
+          <div class="psc-field">
+            <label>ผู้ใช้งาน(USER)</label>
+            <input name="user" placeholder="ชื่อผู้บันทึก" required/>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- FOOTER -->
+      <div class="psc-modal-footer">
+
+        <button type="button"
+                class="psc-btn psc-btn-light"
+                onclick="closeReceiveModal()">
+          ยกเลิก
+        </button>
+
+        <button type="submit"
+                class="psc-btn psc-btn-primary">
+          💾 บันทึกข้อมูล
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+<!-- =========================================
+DETAIL MODAL
+========================================= -->
+<div id="detailModal" class="psc-modal">
+
+  <div class="psc-detail-modal">
+
+    <!-- HEADER -->
+    <div class="psc-detail-header">
+
+      <div>
+        <div class="psc-detail-title">
+          📦 รายละเอียดรายการยา
+        </div>
+
+        <div class="psc-detail-subtitle">
+          Pharmacy Stock Movement
+        </div>
+      </div>
+
+      <button
+        class="psc-detail-close"
+        onclick="closeDetailModal()"
+      >
+        ✕
+      </button>
+
+    </div>
+
+    <!-- CONTENT -->
+    <div
+      id="detailContent"
+      class="psc-detail-body"
+    >
+
+      <!-- JS RENDER HERE -->
+
+    </div>
+
+  </div>
+
+</div>

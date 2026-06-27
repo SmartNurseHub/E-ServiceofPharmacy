@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>
+    Pharmacy Enterprise Dashboard
+  </title>
+
+  <!-- CSS -->
+<link rel="stylesheet" href="/assets/css/dashboard.css">
+<link rel="stylesheet" href="/assets/css/pharmacy.css">
+<link rel="stylesheet" href="/assets/css/dispense.css">
+<link rel="stylesheet" href="/assets/css/emergency.css">
+<link rel="stylesheet" href="/assets/css/inventory.css">
+<link rel="stylesheet" href="/assets/css/receivestock.css">
+<link rel="stylesheet" href="/assets/css/stock-balance.css">
+<link rel="stylesheet" href="/assets/css/summarydb.css">
+
+
+  <!-- FONT AWESOME -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- GOOGLE FONT -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="brand">
+
+      <div class="brand-logo">
+        💊
+      </div>
+
+      <div>
+        <h2>Smart Stock</h2>
+        <p>Management System</p>
+      </div>
+
+    </div>
+
+    <ul class="menu">
+
+  <li>
+    <a href="#" data-route="dashboard">
+      📊 Dashboard
+    </a>
+  </li>
+
+  <!-- Controlled Drug -->
+  <li>
+  <a href="#" data-route="controlled-drug">
+      💊 Smart Controlled Drug
+  </a>
+</li>
+
+  <!-- Emergency Checklist -->
+  <li>
+  <a href="#" data-route="emergency-checklist">
+      🚑 Emergency Checklist
+  </a>
+</li>
+
+  <li>
+    <a href="#">
+      📄 Report
+    </a>
+  </li>
+
+  <li>
+    <a href="#">
+      🛠️ Settings
+    </a>
+  </li>
+
+</ul>
+
+  </aside>
+
+  
+
+<!-- MAIN -->
+<main class="main">
+<div id="app"></div>
+
+</main>
+
+</div>
+
+<div id="modal-root"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+<script src="/assets/js/modal.js"></script>
+<script type="module" src="/assets/js/app.js"></script>
+
+</body>
+
+
+
+</html>

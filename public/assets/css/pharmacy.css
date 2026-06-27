@@ -1,0 +1,429 @@
+/* =========================================================
+PHARMACY STOCK CARD SYSTEM (PSC v2.0)
+FULL ISOLATION / PRODUCTION GRADE
+========================================================= */
+
+/* ROOT SCOPE */
+.psc-app{
+  font-family:"Kanit",sans-serif;
+  background:#f1f5f9;
+  min-height:100vh;
+  color:#0f172a;
+}
+
+/* =========================================================
+PAGE WRAPPER
+========================================================= */
+
+.psc-page{
+  padding:14px;
+}
+
+/* =========================================================
+CARD
+========================================================= */
+
+.psc-card{
+  background:#fff;
+  border-radius:16px;
+  border:1px solid #e2e8f0;
+  box-shadow:0 10px 30px rgba(0,0,0,.06);
+  overflow:hidden;
+}
+
+/* =========================================================
+HEADER
+========================================================= */
+
+.psc-stock-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px;
+  background:linear-gradient(135deg,#006064,#00838f);
+  color:#fff;
+}
+
+.psc-stock-title h1{
+  font-size:20px;
+  font-weight:800;
+}
+
+.psc-stock-title p{
+  font-size:12px;
+  opacity:.85;
+  margin-top:4px;
+}
+
+/* =========================================================
+BUTTON SYSTEM
+========================================================= */
+
+.psc-btn{
+  border:none;
+  border-radius:12px;
+  height:42px;
+  padding:0 14px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.2s;
+  font-family: inherit; /* 🔥 เพิ่มตรงนี้ */
+}
+
+.psc-btn-primary{
+  background:#ffffff;
+  color:#006064;
+}
+
+.psc-btn-primary:hover{
+  transform:translateY(-1px);
+}
+
+.psc-btn-light{
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+}
+
+/* =========================================================
+TABLE WRAPPER
+========================================================= */
+
+.psc-table-wrap{
+  overflow:auto;
+  max-height:75vh;
+}
+
+/* TABLE */
+.psc-table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  min-width:900px;
+}
+
+/* HEADER STICKY */
+.psc-table thead th{
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:#fcb104;
+  color:#fff;
+  font-size:12px;
+  padding:12px;
+  text-align:center;
+}
+
+/* BODY */
+.psc-table tbody td{
+  padding:12px;
+  border-bottom:1px solid #eef2f7;
+  font-size:13px;
+}
+
+.psc-table tbody tr:hover td{
+  background:#f1f5ff;
+}
+
+/* =========================================================
+MODAL (FULL ISOLATION)
+========================================================= */
+
+.psc-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:99999;
+}
+
+.psc-modal.show{
+  display:flex;
+}
+
+.psc-modal-box{
+  width:min(900px,92%);
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.25);
+}
+
+/* MODAL HEADER */
+.psc-modal-header{
+  padding:16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#006064;
+  color:#fff;
+}
+
+.psc-modal-close{
+  background:transparent;
+  border:none;
+  color:#fff;
+  font-size:18px;
+  cursor:pointer;
+}
+
+/* BODY */
+.psc-modal-body{
+  padding:16px;
+}
+
+/* GRID */
+.psc-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+/* FIELD */
+.psc-field label{
+  font-size:12px;
+  color:#64748b;
+  font-weight:700;
+  margin-bottom:6px;
+  display:block;
+}
+
+.psc-field input{
+  width:100%;
+  height:40px;
+  border:1px solid #e2e8f0;
+  border-radius:10px;
+  padding:0 10px;
+  font-size:13px;
+}
+
+.psc-field input:focus{
+  outline:none;
+  border-color:#00838f;
+  box-shadow:0 0 0 3px rgba(0,131,143,.15);
+}
+
+/* FOOTER */
+.psc-modal-footer{
+  padding:14px;
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  border-top:1px solid #e2e8f0;
+}
+
+/* =========================================================
+RESPONSIVE
+========================================================= */
+
+@media(max-width:768px){
+  .psc-grid{
+    grid-template-columns:1fr;
+  }
+
+  .psc-stock-header{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+}
+
+/* =========================
+   UNIFY INPUT + SELECT STYLE
+========================= */
+
+.psc-field input,
+.psc-field select,
+.ts-control {
+  width: 100%;
+  height: 40px;              /* 👈 เท่ากันตรงนี้ */
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0 10px;
+  font-size: 13px;
+  background: #fff;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+/* focus state (input + tomselect) */
+.psc-field input:focus,
+.psc-field select:focus,
+.ts-control.focus {
+  outline: none;
+  border-color: #00838f;
+  box-shadow: 0 0 0 3px rgba(0,131,143,.15);
+}
+
+/* TomSelect wrapper fix */
+.ts-wrapper {
+  width: 100%;
+}
+
+/* remove weird default spacing */
+.ts-control {
+  padding: 0 10px !important;
+  display: flex;
+  align-items: center;
+}
+
+.ts-dropdown {
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+
+.ts-dropdown .option {
+  padding: 10px;
+  font-size: 13px;
+}
+
+.ts-dropdown .option:hover {
+  background: #f1f5f9;
+}
+
+/* =========================================
+DETAIL MODAL
+========================================= */
+
+.psc-detail-modal{
+  width:min(950px,92%);
+  background:#fff;
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.25);
+}
+
+/* HEADER */
+.psc-detail-header{
+  padding:20px 24px;
+  background:linear-gradient(135deg,#006064,#00838f);
+  color:#fff;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.psc-detail-title{
+  font-size:22px;
+  font-weight:800;
+}
+
+.psc-detail-subtitle{
+  margin-top:4px;
+  font-size:12px;
+  opacity:.85;
+}
+
+.psc-detail-close{
+  border:none;
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  background:rgba(255,255,255,.15);
+  color:#fff;
+  font-size:18px;
+  cursor:pointer;
+}
+
+/* BODY */
+.psc-detail-body{
+  padding:20px;
+  background:#f8fafc;
+
+  max-height:75vh;
+  overflow:auto;
+}
+
+/* GRID */
+.psc-detail-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+
+/* SECTION */
+.psc-detail-section{
+  background:#fff;
+  border-radius:18px;
+  padding:18px;
+  border:1px solid #e2e8f0;
+}
+
+.psc-detail-section.full{
+  grid-column:1/-1;
+}
+
+/* TITLE */
+.psc-section-title{
+  font-size:14px;
+  font-weight:800;
+  margin-bottom:16px;
+  color:#0f172a;
+}
+
+/* INFO LIST */
+.psc-info-list{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+/* ITEM */
+.psc-info-item{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+
+  padding-bottom:10px;
+  border-bottom:1px dashed #e2e8f0;
+}
+
+.psc-info-item:last-child{
+  border-bottom:none;
+  padding-bottom:0;
+}
+
+.psc-info-item span{
+  font-size:13px;
+  color:#64748b;
+}
+
+.psc-info-item strong{
+  font-size:14px;
+  color:#0f172a;
+  text-align:right;
+}
+
+/* REMARK */
+.psc-remark-box{
+  background:#f8fafc;
+  border:1px dashed #cbd5e1;
+  border-radius:14px;
+  padding:16px;
+  min-height:80px;
+  font-size:14px;
+  line-height:1.7;
+  color:#334155;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+  .psc-detail-grid{
+    grid-template-columns:1fr;
+  }
+
+  .psc-detail-title{
+    font-size:18px;
+  }
+
+}
+
+
+
+
+
+

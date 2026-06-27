@@ -1,0 +1,25 @@
+{
+  "name": "pharmacystockcard2026",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "_moduleAliases": {
+    "@": "src"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.17",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.19.2",
+    "google-auth-library": "^10.6.2",
+    "google-spreadsheet": "^5.2.0",
+    "googleapis": "^140.0.1",
+    "iconv-lite": "^0.7.2",
+    "module-alias": "^2.3.4",
+    "multer": "^1.4.5-lts.1",
+    "node-dbf": "^0.4.0",
+    "xlsx": "^0.18.5"
+  }
+}

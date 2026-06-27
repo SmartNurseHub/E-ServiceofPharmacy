@@ -1,0 +1,258 @@
+/* =========================
+   GLOBAL
+========================= */
+
+html,
+body {
+  font-family: "Kanit", "Prompt", "Noto Sans Thai", sans-serif;
+  background: #f4f6fb;
+  color: #1f2d3d;
+  margin: 0;
+}
+
+/* =========================
+   PAGE CONTAINER
+========================= */
+
+.drug-balance-page {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.db-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 18px 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+}
+
+.db-title h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.db-title p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #6b7a90;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.db-btn {
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid #d0d7e2;
+  background: #fff;
+  cursor: pointer;
+  transition: 0.2s;
+  font-weight: 500;
+}
+
+.db-btn:hover {
+  background: #f3f6ff;
+  border-color: #b9c7ff;
+}
+
+.db-btn.primary {
+  background: #2f6fed;
+  color: white;
+  border: none;
+}
+
+.db-btn.primary:hover {
+  background: #255dd6;
+}
+
+/* =========================
+   SUMMARY (KPI STYLE)
+========================= */
+
+.db-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.db-card {
+  background: white;
+  padding: 16px;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  transition: 0.2s;
+}
+
+.db-card:hover {
+  transform: translateY(-2px);
+}
+
+.db-card span {
+  font-size: 12px;
+  color: #6b7a90;
+}
+
+.db-card strong {
+  font-size: 22px;
+  display: block;
+  margin-top: 6px;
+}
+
+/* optional colors */
+.db-card.green strong { color: #1a7f37; }
+.db-card.blue strong { color: #2f6fed; }
+
+/* =========================
+   FILTER BAR
+========================= */
+
+.db-toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 16px;
+  background: white;
+  padding: 14px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+}
+
+.db-field label {
+  display: block;
+  font-size: 12px;
+  color: #6b7a90;
+  margin-bottom: 4px;
+}
+
+.db-field input {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #d0d7e2;
+  outline: none;
+}
+
+.db-field input:focus {
+  border-color: #2f6fed;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.db-table-wrap {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+}
+
+.db-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.db-table thead {
+  background: #f5f7ff;
+}
+
+.db-table th {
+  text-align: left;
+  padding: 14px;
+  font-size: 13px;
+  color: #334155;
+}
+
+.db-table td {
+  padding: 14px;
+  border-top: 1px solid #eef2f7;
+  font-size: 13px;
+}
+
+.db-table tbody tr:hover {
+  background: #f9fbff;
+}
+
+/* =========================
+   BADGE
+========================= */
+
+.badge {
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.badge.in {
+  background: #e8f7ee;
+  color: #1a7f37;
+}
+
+.badge.out {
+  background: #ffecec;
+  color: #c62828;
+}
+
+.db-action{
+  text-align:center;
+  white-space:nowrap;
+}
+
+.db-icon-btn{
+
+  width:36px;
+  height:36px;
+
+  border:none;
+  border-radius:10px;
+
+  cursor:pointer;
+
+  margin:0 2px;
+
+  transition:.2s;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:14px;
+}
+
+/* Edit */
+
+.edit-btn{
+  background:#eef4ff;
+  color:#2563eb;
+}
+
+.edit-btn:hover{
+  background:#2563eb;
+  color:#fff;
+  transform:translateY(-2px);
+}
+
+/* Delete */
+
+.delete-btn{
+  background:#fff1f2;
+  color:#dc2626;
+}
+
+.delete-btn:hover{
+  background:#dc2626;
+  color:#fff;
+  transform:translateY(-2px);
+}

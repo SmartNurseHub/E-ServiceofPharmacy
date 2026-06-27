@@ -1,0 +1,69 @@
+<div class="drug-balance-page">
+
+  <!-- HEADER -->
+  <div class="db-header">
+    <div class="db-title">
+      <h2>📊 Drug Balance</h2>
+      <p>ระบบตรวจสอบยอดคงเหลือยา (Stock Movement & Balance Tracking)</p>
+    </div>
+
+    <div class="db-actions">
+      <button class="db-btn primary">Export</button>
+      <button class="db-btn">Refresh</button>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="db-summary"></div>
+
+  <!-- FILTER -->
+  <div class="db-toolbar">
+
+<div class="db-field">
+  <label>เลือกยา</label>
+
+  <select id="drugSelect">
+    <option value="">-- กรุณาเลือกยา --</option>
+  </select>
+</div>
+
+    <div class="db-field">
+      <label>วันที่เริ่ม</label>
+      <input type="date">
+    </div>
+
+    <div class="db-field">
+      <label>วันที่สิ้นสุด</label>
+      <input type="date">
+    </div>
+
+    <button class="db-btn primary">Filter</button>
+
+  </div>
+
+  <!-- TABLE -->
+  <div class="db-table-wrap">
+
+    <table class="db-table">
+
+      <thead>
+        <tr>
+          <th>วันที่</th>
+          <th>ประเภท</th>
+          <th>รายการ</th>
+          <th>ข้อมูลยา</th>
+          <th>รับเข้า</th>
+          <th>จ่ายออก</th>
+          <th>คงเหลือ</th>
+          <th>ผู้ให้บริการ</th>
+          <th>การจัดการ</th>
+        </tr>
+      </thead>
+
+      <tbody></tbody>
+
+    </table>
+
+  </div>
+
+</div>

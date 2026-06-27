@@ -1,0 +1,220 @@
+.summary-section{
+  font-family: "Inter","Segoe UI",sans-serif;
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* =========================
+   HEADER
+========================= */
+.summary-header{
+  margin-bottom: 20px;
+}
+
+.summary-header h3{
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: .3px;
+}
+
+.summary-header p{
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* =========================
+   GRID
+========================= */
+.summary-row{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+/* Tablet / Mobile */
+@media (max-width: 1024px){
+  .summary-row{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   CARD
+========================= */
+.drug-card{
+  position: relative;
+  overflow: hidden;
+
+  width: 100%;
+  min-width: 0;
+
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(12px);
+
+  border: 1px solid #eef2f7;
+  border-radius: 18px;
+
+  padding: 20px;
+
+  box-shadow:
+    0 4px 12px rgba(0,0,0,.04),
+    0 12px 32px rgba(0,0,0,.06);
+
+  transition: all .25s ease;
+}
+
+.drug-card::before{
+  content: "";
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 4px;
+
+  background: linear-gradient(
+    90deg,
+    #0ea5e9,
+    #3b82f6
+  );
+}
+
+.drug-card:hover{
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 10px 24px rgba(0,0,0,.08),
+    0 20px 40px rgba(0,0,0,.10);
+}
+
+/* =========================
+   CARD HEADER
+========================= */
+.drug-card-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.drug-title{
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* =========================
+   BADGE
+========================= */
+.drug-badge{
+  padding: 5px 10px;
+
+  border-radius: 999px;
+
+  background: #e0f2fe;
+  color: #0284c7;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.drug-badge.low{
+  background: #ecfdf5;
+  color: #059669;
+}
+
+/* =========================
+   KPI GRID
+========================= */
+.kpi-row{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+/* =========================
+   KPI BOX
+========================= */
+.kpi{
+  background: #f8fafc;
+
+  border: 1px solid #eef2f7;
+  border-radius: 14px;
+
+  padding: 14px 10px;
+
+  text-align: center;
+
+  transition: all .2s ease;
+}
+
+.kpi:hover{
+  background: #ffffff;
+  transform: scale(1.03);
+}
+
+.kpi-label{
+  display: block;
+
+  margin-bottom: 6px;
+
+  font-size: 11px;
+  color: #64748b;
+}
+
+.kpi-value{
+  display: block;
+
+  font-size: 24px;
+  font-weight: 700;
+
+  color: #111827;
+}
+
+/* =========================
+   BALANCE
+========================= */
+.highlight-box{
+  background: linear-gradient(
+    135deg,
+    #e0f2fe,
+    #f0f9ff
+  );
+
+  border: 1px solid #bae6fd;
+}
+
+.highlight-box .kpi-value{
+  color: #0284c7;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 640px){
+
+  .drug-card{
+    padding: 16px;
+  }
+
+  .kpi-row{
+    gap: 8px;
+  }
+
+  .kpi{
+    padding: 10px 6px;
+  }
+
+  .kpi-value{
+    font-size: 18px;
+  }
+
+  .kpi-label{
+    font-size: 10px;
+  }
+}
